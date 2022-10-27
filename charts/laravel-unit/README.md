@@ -20,7 +20,7 @@ Containerize & Orchestrate your Laravel application with this simple Helm chart.
 
 ## 🚀 Installation
 
-To create a Laravel project image for Docker, head over to [renoki-co/laravel-helm-demo](https://github.com/renoki-co/laravel-helm-demo) to get started. The Dockerfile differs based on the project you want to deploy, and there you will find a demo application to run to understand the basics.
+To create a Laravel project image for Docker, head over to [jd1378/laravel-unit-helm-demo](https://github.com/jd1378/laravel-unit-helm-demo) to get started. The Dockerfile differs based on the project you want to deploy, and there you will find a demo application to run to understand the basics.
 
 Install the Helm chart repository:
 
@@ -35,7 +35,7 @@ Install Laravel chart:
 $ helm upgrade laravel-app \
     --install \
     --version=1.0.0 \
-    jd1378/laravel
+    jd1378/laravel-unit
 ```
 
 Check `values.yaml` for additional available customizations.
@@ -108,7 +108,7 @@ stringData:
 
 Workers can be for example long-lived commands, like `php artisan queue:work` commands or `php artisan horizon` that run in separate processes, other the web workers that serve HTTP content.
 
-To deploy such workload, check the [Worker Chart](https://github.com/renoki-co/charts/tree/master/charts/laravel-worker) that will ease the job for you.
+To deploy such workload, check the [Worker Chart](https://github.com/jd1378/laravel-helm-charts/tree/master/charts/laravel-worker) that will ease the job for you.
 
 ## 📡 Monitoring
 
