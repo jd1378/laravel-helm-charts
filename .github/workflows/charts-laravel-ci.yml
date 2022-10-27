@@ -1,9 +1,9 @@
-name: charts/laravel
+name: charts/laravel-unit
 
 on:
   push:
     paths:
-      - charts/laravel/**
+      - charts/laravel-unit/**
       - .github/workflows/charts-laravel-ci.yml
 
 jobs:
@@ -37,26 +37,26 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
+          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git config --local user.name "$GITHUB_ACTOR"
 
       - name: Install Helm
         uses: azure/setup-helm@v1.1
         with:
-          version: v3.4.0
+          version: v3.10.0
 
       - name: Install Chart
         run: |
           sleep 30
-          kubectl apply -f tests/laravel/secret.yaml
-          helm upgrade --install -f tests/laravel/values.yaml laravel ./charts/laravel
+          kubectl apply -f tests/laravel-unit/secret.yaml
+          helm upgrade --install -f tests/laravel-unit/values.yaml laravel-unit ./charts/laravel-unit
           kubectl get pods
 
       - name: Install NGINX Ingress Controller
         run: |
           helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
           helm repo update
-          helm upgrade nginx --version=4.0.12 -f tests/laravel/nginx.yaml --install ingress-nginx/ingress-nginx
+          helm upgrade nginx --version=4.0.12 -f tests/laravel-unit/nginx.yaml --install ingress-nginx/ingress-nginx
 
       - name: Update hosts
         run: |
@@ -67,4 +67,3 @@ jobs:
         timeout-minutes: 5
         run: |
           until curl --silent -XGET --fail http://test.laravel.com; do printf '.'; sleep 1; done
-

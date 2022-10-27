@@ -1,14 +1,14 @@
-Renoki Co. Helm Repo
+jd1378 Helm Repo
 ====================
 
-Helm Charts provided by Renoki Co. 🚀
+A fork of Helm Charts provided by Renoki Co. this fork focuses on using nginx unit.
 
 ## 🚀 Installation
 
 To install the charts repository:
 
 ```bash
-$ helm repo add renoki-co https://helm.renoki.org
+$ helm repo add jd1378 https://jd1378.github.io/laravel-helm-charts
 $ helm repo update
 ```
 

@@ -4,11 +4,9 @@
     - [📜 Environment variables](#-environment-variables)
     - [🤖 Run workers (non-HTTP workload)](#-run-workers-non-http-workload)
   - [📡 Monitoring](#-monitoring)
-    - [🔥 Scraping PHP-FPM and NGINX Metrics](#-scraping-php-fpm-and-nginx-metrics)
     - [❤ Healthchecks](#-healthchecks)
   - [🐛 Testing](#-testing)
   - [🤝 Contributing](#-contributing)
-  - [🔒  Security](#--security)
   - [🎉 Credits](#-credits)
 
 Laravel Helm Chart
@@ -27,7 +25,7 @@ To create a Laravel project image for Docker, head over to [renoki-co/laravel-he
 Install the Helm chart repository:
 
 ```bash
-$ helm repo add renoki-co https://helm.renoki.org
+$ helm repo add jd1378 https://jd1378.github.io/laravel-helm-charts
 $ helm repo update
 ```
 
@@ -37,7 +35,7 @@ Install Laravel chart:
 $ helm upgrade laravel-app \
     --install \
     --version=1.0.0 \
-    renoki-co/laravel
+    jd1378/laravel
 ```
 
 Check `values.yaml` for additional available customizations.
@@ -114,16 +112,9 @@ To deploy such workload, check the [Worker Chart](https://github.com/renoki-co/c
 
 ## 📡 Monitoring
 
-### 🔥 Scraping PHP-FPM and NGINX Metrics
-
-PHP-FPM and NGINX containers within the Laravel app pod can expose metrics for Prometheus to scrape. When enabling the exporters, the following endpoints return Prometheus-readable metrics:
-
-- `localhost:9253/metrics` - PHP-FPM metrics
-- `localhost:9113/metrics` - NGINX metrics
-
 ### ❤ Healthchecks
 
-Healthchecks are set up and enabled by default for both `/health` on the NGINX container (the web application that will serve the Laravel app) and the TCP :9000 port on PHP-FPM.
+Healthchecks are set up and enabled for `/health` on the Laravel + Nginx container (the web application that will serve the Laravel app).
 
 For convenience, you may use [renoki-co/laravel-healthcheck](https://github.com/renoki-co/laravel-healthchecks) to easily set up healthchecks in your app, just like in `app/Http/Controllers/HealthController`.
 
@@ -135,11 +126,8 @@ Coming soon.
 
 Please see [CONTRIBUTING](../../CONTRIBUTING.md) for details.
 
-## 🔒  Security
-
-If you discover any security related issues, please email alex@renoki.org instead of using the issue tracker.
-
 ## 🎉 Credits
 
 - [Alex Renoki](https://github.com/rennokki)
+- [jd1378](https://github.com/jd1378)
 - [All Contributors](../../../../contributors)

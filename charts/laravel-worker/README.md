@@ -18,12 +18,12 @@ Containerize & Orchestrate your Laravel worker application with this simple Helm
 
 ## 🚀 Installation
 
-To create a Laravel project image for Docker, head over to [renoki-co/laravel-helm-demo](https://github.com/renoki-co/laravel-helm-demo) to get started. The Dockerfile differs based on the project you want to deploy, and there you will find a demo application to run to understand the basics.
+To create a Laravel project image for Docker, head over to [jd1378/laravel-helm-demo](https://github.com/jd1378/laravel-helm-demo) to get started. The Dockerfile differs based on the project you want to deploy, and there you will find a demo application to run to understand the basics.
 
 Install the Helm chart repository:
 
 ```bash
-$ helm repo add renoki-co https://helm.renoki.org
+$ helm repo add jd1378 https://jd1378.github.io/laravel-helm-charts
 $ helm repo update
 ```
 
@@ -33,7 +33,7 @@ Install Laravel Worker chart:
 $ helm upgrade laravel-horizon \
     --install \
     --version=1.0.0 \
-    renoki-co/laravel-worker
+    jd1378/laravel-worker
 ```
 
 Check `values.yaml` for additional available customizations.
@@ -117,4 +117,5 @@ If you discover any security related issues, please email alex@renoki.org instea
 ## 🎉 Credits
 
 - [Alex Renoki](https://github.com/rennokki)
+- [jd1378](https://github.com/jd1378)
 - [All Contributors](../../../../contributors)

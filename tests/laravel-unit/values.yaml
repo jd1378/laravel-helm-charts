@@ -14,7 +14,7 @@ nameOverride: ""
 fullnameOverride: ""
 imagePullSecrets: []
 
-# Configure Laravel PHP-FPM container.
+# Configure Laravel + Nginx unit container.
 app:
   image:
     repository: javadmnjd/laravel-helm-demo
