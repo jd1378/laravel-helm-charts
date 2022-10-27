@@ -52,12 +52,14 @@ app:
   # - name: some-folder
   #   mountPath: /some/path
 
-  # Configure the TCP healthcheck for the PHP-FPM process.
-  # If enabled, Kubernetes will periodically check the PHP-FPM
-  # process to be alive and to serve FCGI requests.
+  # Configure the HTTP healthcheck for the Laravel app.
+  # If enabled, ensure the given path in the Laravel app
+  # returns a 200 OK when accessed. Implementing a healthcheck
+  # controller like https://github.com/renoki-co/laravel-healthchecks is desirable.
   healthcheck:
     enabled: true
     period: 5
+    path: /health
 
 serviceAccount:
   # Specifies whether a service account should be created
