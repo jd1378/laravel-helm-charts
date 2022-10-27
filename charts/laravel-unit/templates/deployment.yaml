@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "laravel-octane.fullname" . }}
+  name: {{ include "laravel.fullname" . }}
   labels:
-    {{- include "laravel-octane.labels" . | nindent 4 }}
+    {{- include "laravel.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
@@ -14,8 +14,8 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      {{- include "laravel-octane.selectorLabels" . | nindent 6 }}
-      octane.laravel.com/pod-type: web
+      {{- include "laravel.selectorLabels" . | nindent 6 }}
+      laravel.com/pod-type: web
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -23,8 +23,8 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "laravel-octane.selectorLabels" . | nindent 8 }}
-        octane.laravel.com/pod-type: web
+        {{- include "laravel.selectorLabels" . | nindent 8 }}
+        laravel.com/pod-type: web
     spec:
       volumes:
         - name: env
@@ -42,7 +42,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
 
-      serviceAccountName: {{ include "laravel-octane.serviceAccountName" . }}
+      serviceAccountName: {{ include "laravel.serviceAccountName" . }}
 
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
@@ -56,16 +56,15 @@ spec:
         {{- with .Values.extraContainers }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
-        - name: octane
+
+        - name: app
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.app.image.pullPolicy }}
-          command:
-            {{- toYaml .Values.app.command | nindent 12 }}
           volumeMounts:
             - name: env
-              mountPath: /tmp/.env
+              mountPath: /var/www/.env
               subPath: .env
             - name: php-ini-config
               mountPath: /usr/local/etc/php/php.ini
@@ -97,13 +96,8 @@ spec:
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          lifecycle:
-            postStart:
-              exec:
-                command:
-                  - /bin/sh
-                  - -c
-                  - cp /tmp/.env /var/www/html/.env && cd /var/www/html && sh deploy.sh
+
+
         {{- if .Values.scheduler.enabled }}
         - name: scheduler
           securityContext:
@@ -114,7 +108,7 @@ spec:
             {{- toYaml .Values.scheduler.command | nindent 12 }}
           volumeMounts:
             - name: env
-              mountPath: /tmp/.env
+              mountPath: /var/www/.env
               subPath: .env
             - name: php-ini-config
               mountPath: /usr/local/etc/php/php.ini
@@ -144,15 +138,9 @@ spec:
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          lifecycle:
-            postStart:
-              exec:
-                command:
-                  - /bin/sh
-                  - -c
-                  - cp /tmp/.env /var/www/html/.env && cd /var/www/html && sh deploy.sh
-
         {{- end }}
+
+
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
