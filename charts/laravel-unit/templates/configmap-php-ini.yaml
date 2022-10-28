@@ -3,6 +3,8 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-php-ini-config
+  annotations:
+    checksum/config: {{ tpl .Values.phpIni.content . | sha256sum }}
 data:
   php.ini: |
 {{- tpl .Values.phpIni.content . | nindent 4 }}
