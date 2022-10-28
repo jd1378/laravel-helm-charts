@@ -1,5 +1,5 @@
 apiVersion: v2
-name: laravel
+name: laravel-unit
 description: Helm chart scaffolding for Laravel + Nginx Unit applications.
 
 # A chart can be either an 'application' or a 'library' chart.
