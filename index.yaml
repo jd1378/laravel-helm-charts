@@ -3,6 +3,16 @@ entries:
   laravel-unit:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2022-10-28T16:38:43.682697043Z"
+    description: Helm chart scaffolding for Laravel + Nginx Unit applications.
+    digest: c97447559f0e715b11510d1666632fc966e5baea1996a269f913d4fd8a110377
+    name: laravel-unit
+    type: application
+    urls:
+    - https://github.com/jd1378/laravel-helm-charts/releases/download/laravel-unit-1.0.3/laravel-unit-1.0.3.tgz
+    version: 1.0.3
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2022-10-28T07:43:53.080845764Z"
     description: Helm chart scaffolding for Laravel + Nginx Unit applications.
     digest: 3791bda4b2ad57ebf00aa2976024519a9bde1b3318f40eb6fdfd2e0880c99401
@@ -52,4 +62,4 @@ entries:
     urls:
     - https://github.com/jd1378/laravel-helm-charts/releases/download/laravel-worker-1.0.0/laravel-worker-1.0.0.tgz
     version: 1.0.0
-generated: "2022-10-28T07:43:53.080867264Z"
+generated: "2022-10-28T16:38:43.682720543Z"
