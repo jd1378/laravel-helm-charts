@@ -7,8 +7,6 @@ metadata:
   name: {{ $fullName }}
   labels:
     {{- include "laravel.labels" . | nindent 4 }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
   annotations:
     nginx.ingress.kubernetes.io/custom-http-errors: "404"
     {{- with .Values.ingress.annotations }}

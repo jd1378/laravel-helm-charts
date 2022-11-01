@@ -54,6 +54,10 @@ jobs:
           helm upgrade --install -f tests/laravel-unit/values.yaml laravel-unit ./charts/laravel-unit
           kubectl get pods
 
+      - name: Remove existing nginx class
+        run: |
+          kubectl delete ingressclass nginx --all-namespaces
+
       - name: Install NGINX Ingress Controller
         run: |
           helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
