@@ -47,22 +47,18 @@ jobs:
         with:
           version: v3.10.1
 
+      - name: Install NGINX Ingress Controller
+        run: |
+          helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+          helm repo update
+          helm upgrade nginx --version=4.3.0 -f tests/laravel-unit/nginx.yaml --install ingress-nginx/ingress-nginx
+
       - name: Install Chart
         run: |
           sleep 30
           kubectl apply -f tests/laravel-unit/secret.yaml
           helm upgrade --install -f tests/laravel-unit/values.yaml laravel-unit ./charts/laravel-unit
           kubectl get pods
-
-      - name: Remove existing nginx class
-        run: |
-          kubectl delete ingressclass nginx --all-namespaces
-
-      - name: Install NGINX Ingress Controller
-        run: |
-          helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-          helm repo update
-          helm upgrade nginx --version=4.3.0 -f tests/laravel-unit/nginx.yaml --install ingress-nginx/ingress-nginx
 
       - name: Update hosts
         run: |
