@@ -62,13 +62,9 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.app.image.pullPolicy }}
-          command:
-            - /bin/sh
-            - -c
-            - cp /tmp/.env /var/www/html/.env && cd /var/www/html && sh deploy.sh && {{ .Values.app.command }}
           volumeMounts:
             - name: env
-              mountPath: /tmp/.env
+              mountPath: /var/www/.env
               subPath: .env
             {{- with .Values.app.extraVolumeMounts }}
             {{- toYaml . | nindent 12 }}
