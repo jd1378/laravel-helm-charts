@@ -1,4 +1,4 @@
-jd1378 Helm Repo
+renoki-co-fork Helm Repo
 ====================
 
 A fork of Helm Charts provided by Renoki Co. this fork focuses on using nginx unit.
@@ -8,14 +8,14 @@ A fork of Helm Charts provided by Renoki Co. this fork focuses on using nginx un
 To install the charts repository:
 
 ```bash
-$ helm repo add jd1378 https://jd1378.github.io/laravel-helm-charts
+$ helm repo add renoki-co-fork https://jd1378.github.io/laravel-helm-charts
 $ helm repo update
 ```
 
 To install a specific chart:
 
 ```bash
-$ helm install some-release renoki-co/<chart>
+$ helm install some-release renoki-co-fork/<chart>
 ```
 
 ## Search for available repos
