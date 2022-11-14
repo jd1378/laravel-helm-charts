@@ -44,6 +44,16 @@ entries:
   laravel-worker:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2022-11-08T16:22:43.021562255Z"
+    description: Helm chart scaffolding for additional Laravel worker applications.
+    digest: 4620b473e50dc55af9ca686e24d4677d04b62fea3f3986b2b8341ff2dd61ec63
+    name: laravel-worker
+    type: application
+    urls:
+    - https://github.com/jd1378/laravel-helm-charts/releases/download/laravel-worker-1.0.3/laravel-worker-1.0.3.tgz
+    version: 1.0.3
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2022-11-03T16:44:19.067290719Z"
     description: Helm chart scaffolding for additional Laravel worker applications.
     digest: 8508209b2faa50c2ab6ee82be80cfba31dde814a85cec461507b68a8d6b6cc81
@@ -72,4 +82,4 @@ entries:
     urls:
     - https://github.com/jd1378/laravel-helm-charts/releases/download/laravel-worker-1.0.0/laravel-worker-1.0.0.tgz
     version: 1.0.0
-generated: "2022-11-03T16:44:19.06731702Z"
+generated: "2022-11-08T16:22:43.021591655Z"
